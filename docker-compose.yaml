@@ -9,6 +9,8 @@ services:
       JUPYTER_PORT: 8000
       JUPYTER_PASSWORD: jupiter
       USER_PASSWORD: user
+      NVIDIA_VISIBLE_DEVICES: all
+      HF_TOKEN: your_token_here # Необязательно: ваш токен Hugging Face для закрытых моделей
     ports:
       - "8888:8888"
       - "8889:8889"
@@ -25,6 +27,5 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-      - HF_TOKEN=your_token_here # Необязательно: ваш токен Hugging Face для закрытых моделей
+      
+      
