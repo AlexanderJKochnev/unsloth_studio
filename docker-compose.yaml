@@ -1,0 +1,24 @@
+services:
+  unsloth-studio:
+    image: unsloth/unsloth:latest
+    container_name: unsloth-studio
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    volumes:
+      # - ./data:/workspace/data      # Для ваших датасетов и моделей
+      # - ./hf_home:/root/.cache/huggingface # Чтобы не перекачивать модели при перезапуске
+      - ${BIND_VOLUMES}/vllm_node/models:/workspace/my_models
+      - ${BIND_VOLUMES}/lora_trainer/output:/workspace/my_data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_TOKEN=your_token_here # Необязательно: ваш токен Hugging Face для закрытых моделей
