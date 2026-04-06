@@ -6,14 +6,13 @@ services:
     stdin_open: true
     restart: unless-stopped
     environment:
-      JUPYTER_PORT: 8000
       JUPYTER_PASSWORD: jupiter
       USER_PASSWORD: user
       NVIDIA_VISIBLE_DEVICES: all
       HF_TOKEN: your_token_here # Необязательно: ваш токен Hugging Face для закрытых моделей
     ports:
       - "8888:8888"
-      - "8889:8889"
+      - "8889:8000"
       - "2222:22"
     volumes:
       # - ./data:/workspace/data      # Для ваших датасетов и моделей
