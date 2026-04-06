@@ -5,8 +5,14 @@ services:
     tty: true
     stdin_open: true
     restart: unless-stopped
+    environment:
+      JUPYTER_PORT: 8000
+      JUPYTER_PASSWORD: jupiter
+      USER_PASSWORD: user
     ports:
       - "8888:8888"
+      - "8889:8889"
+      - "2222:22"
     volumes:
       # - ./data:/workspace/data      # Для ваших датасетов и моделей
       # - ./hf_home:/root/.cache/huggingface # Чтобы не перекачивать модели при перезапуске
