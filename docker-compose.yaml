@@ -19,6 +19,10 @@ services:
       # - ./hf_home:/root/.cache/huggingface # Чтобы не перекачивать модели при перезапуске
       - ${BIND_VOLUMES}/vllm_node/models:/workspace/models
       - ${BIND_VOLUMES}/lora_trainer/output:/workspace/datasets
+      - ${BIND_VOLUMES}/unsloth/workspace/work/:/workspace/work/
+      - ${BIND_VOLUMES}/unsloth/workspace/studio/:/workspace/studio/
+      - ${BIND_VOLUMES}/unsloth/workspace/unsloth-notebooks/:/workspace/unsloth-notebooks/
+      - ${BIND_VOLUMES}/unsloth/home/unsloth/:/home/unsloth/
       # - ${BIND_VOLUMES}/vllm_node/models:/workspace/studio/model
       # - ${BIND_VOLUMES}/lora_trainer/output:/workspace/my_data
     deploy:
